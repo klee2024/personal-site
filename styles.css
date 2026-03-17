@@ -1,0 +1,591 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --cream: #fffcf9;
+  --ink: #1a1814;
+  --rose: #954b4d;
+  --teal: #36566d;
+  --muted: #6e6e6e;
+  --mono: "Fragment Mono", monospace;
+  --sans: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════
+   NAV
+═══════════════════════════════════════ */
+#nav-wrap {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 185px;
+  height: 185px;
+  z-index: 200;
+  pointer-events: none;
+}
+#nav-svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 185px;
+  height: 185px;
+  cursor: pointer;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+#nav-svg.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+#nav-poly {
+  fill: var(--rose);
+  pointer-events: fill;
+  cursor: pointer;
+}
+#nav-links {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+#nav-links.show {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.15s ease 0.15s;
+}
+#nav-links a {
+  display: block;
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--cream);
+  text-decoration: none;
+  line-height: 1;
+  margin-bottom: 20px;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+#nav-links a:first-child {
+  margin-top: 10px;
+}
+#nav-links a:last-child {
+  margin-bottom: 0;
+}
+#nav-links a:hover {
+  opacity: 0.65;
+}
+
+/* ═══════════════════════════════════════
+   HERO / ABOUT
+═══════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding: 99px 142px 120px;
+}
+.hero-name {
+  font-family: var(--mono);
+  font-size: 48px;
+  color: var(--teal);
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.hero-tagline {
+  font-size: 32px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--rose);
+  line-height: 1;
+  margin-bottom: 40px;
+}
+.hero-body {
+  max-width: 622px;
+}
+.hero-intro {
+  font-size: 24px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+.hero-middle,
+.hero-path {
+  font-size: 20px;
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+.hero-cta {
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 48px;
+}
+.hero-arrow {
+  display: block;
+  width: 202px;
+  height: 107px;
+  margin-left: 180px;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.8s ease forwards;
+}
+.hero-name {
+  animation-delay: 0.1s;
+}
+.hero-tagline {
+  animation-delay: 0.25s;
+}
+.hero-intro {
+  animation-delay: 0.4s;
+}
+.hero-middle {
+  animation-delay: 0.5s;
+}
+.hero-path {
+  animation-delay: 0.6s;
+}
+.hero-cta {
+  animation-delay: 0.7s;
+}
+.hero-arrow {
+  animation-delay: 0.85s;
+}
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ═══════════════════════════════════════
+   SECTION HEADERS
+═══════════════════════════════════════ */
+.section-header {
+  display: flex;
+  align-items: center;
+  padding: 18px 24px 0;
+  gap: 16px;
+}
+.section-header-label {
+  font-size: 16px;
+  color: var(--muted);
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+}
+.section-header-line {
+  width: 95px;
+  height: 1px;
+  background: var(--muted);
+  opacity: 0.5;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.section-header.animated .section-header-line:first-child {
+  animation: drawLine 0.3s ease forwards;
+}
+.section-header.animated .section-header-label {
+  animation: fadeLabel 0.2s ease 0.35s forwards;
+}
+.section-header.animated .section-header-line:last-child {
+  animation: drawLine 0.3s ease 0.55s forwards;
+}
+@keyframes drawLine {
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes fadeLabel {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ═══════════════════════════════════════
+   CAREER ARC
+═══════════════════════════════════════ */
+.arc-section {
+  position: relative;
+  padding: 10px;
+}
+.arc-grid {
+  display: grid;
+  grid-template-columns: 500px 140px 1fr;
+  grid-template-rows: repeat(4, auto);
+  padding: 0 174px;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+.arc-stop {
+  padding: 30px 40px 30px 0;
+  min-height: 185px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.arc-stop.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.arc-stop-title {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+.arc-stop-title.final {
+  font-weight: 600;
+  color: var(--teal);
+}
+.arc-stop-body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #3a3834;
+  max-width: 416px;
+}
+.arc-stop-body em {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--rose);
+}
+.arc-path-col {
+  grid-column: 2;
+  grid-row: 1 / 5;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+#arc-svg {
+  position: sticky;
+  top: 0;
+  width: 140px;
+  height: 100vh;
+  overflow: visible;
+}
+.path-main {
+  stroke: var(--rose);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.7;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+}
+.path-shadow {
+  stroke: var(--rose);
+  stroke-width: 4;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.07;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+}
+.arc-node {
+  fill: var(--rose);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.arc-node.visible {
+  opacity: 1;
+}
+.arc-role {
+  padding: 30px 0 30px 40px;
+  min-height: 185px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease 0.15s, transform 0.65s ease 0.15s;
+}
+.arc-role.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.arc-role-title {
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.arc-role-sub {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ═══════════════════════════════════════
+   KOICHA SECTION
+═══════════════════════════════════════ */
+.koicha-section {
+  position: relative;
+  padding: 60px 0 100px;
+  overflow: hidden;
+}
+
+.koicha-stage {
+  position: relative;
+  height: 420px;
+  margin: 40px 0 0;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+.koicha-stage:active {
+  cursor: grabbing;
+}
+
+/* Koicha info card */
+.koicha-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 499px;
+  height: 371px;
+  background: var(--teal);
+  border-radius: 4px;
+  padding: 35px 80px 35px 80px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform 0.05s linear;
+}
+
+.koicha-card-name {
+  font-family: var(--mono);
+  font-size: 36px;
+  color: white;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.koicha-card-body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.koicha-card-body p {
+  margin-bottom: 12px;
+}
+.koicha-card-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Pull tab */
+.pull-tab {
+  position: absolute;
+  left: 19px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  z-index: 11;
+  pointer-events: none;
+}
+
+.pull-tab-row {
+  display: flex;
+  gap: 3px;
+}
+
+.pull-tab-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Drag hint */
+.drag-hint {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.drag-hint.hidden {
+  opacity: 0;
+}
+
+/* Screenshots gallery */
+.koicha-screenshots {
+  position: absolute;
+  top: 0;
+  left: 499px;
+  height: 371px;
+  display: flex;
+  align-items: center;
+  gap: -30px;
+  padding-left: 0;
+  pointer-events: none;
+}
+
+.koicha-screenshot {
+  width: 615px;
+  height: 364px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+  position: absolute;
+  top: 4px;
+}
+
+.koicha-screenshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  border-radius: 6px;
+}
+
+/* Nav dots for screenshots */
+.koicha-nav-dots {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.koicha-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.koicha-dot.active {
+  opacity: 1;
+  background: var(--rose);
+}
+
+/* ═══════════════════════════════════════
+   FOOTER / HOW TO REACH ME
+═══════════════════════════════════════ */
+.footer {
+  background: var(--rose);
+  padding: 28px 24px 12px;
+  width: 100%;
+}
+
+.footer-hobbies {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--cream);
+  max-width: 600px;
+  margin-bottom: 16px;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-credit {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer-icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--cream);
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+.footer-icon:hover {
+  opacity: 1;
+}
+.footer-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 900px) {
+  .hero {
+    padding: 60px 32px 80px;
+  }
+  .hero-name {
+    font-size: 32px;
+  }
+  .hero-tagline {
+    font-size: 22px;
+  }
+  .hero-intro {
+    font-size: 18px;
+  }
+  .hero-middle,
+  .hero-path,
+  .hero-cta {
+    font-size: 16px;
+  }
+  #nav-wrap,
+  #nav-svg {
+    width: 160px;
+    height: 160px;
+  }
+  .arc-grid {
+    grid-template-columns: 1fr 80px 200px;
+    padding: 0 32px;
+  }
+  .koicha-card {
+    width: 340px;
+    padding: 28px 24px 28px 48px;
+  }
+}
