@@ -34,17 +34,17 @@ body {
   position: fixed;
   top: 0;
   right: 0;
-  width: 185px;
-  height: 185px;
+  width: clamp(120px, 13vw, 170px);
+  height: clamp(120px, 13vw, 170px);
   z-index: 200;
   pointer-events: none;
 }
 #nav-svg {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 185px;
-  height: 185px;
+  top: -1px;
+  right: -1px;
+  width: calc(clamp(120px, 13vw, 170px) + 2px);
+  height: calc(clamp(120px, 13vw, 170px) + 2px);
   cursor: pointer;
   pointer-events: none;
   opacity: 1;
@@ -61,8 +61,8 @@ body {
 }
 #nav-links {
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: clamp(10px, 1.2vw, 14px);
+  left: clamp(10px, 1.2vw, 14px);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.25s ease;
@@ -70,26 +70,28 @@ body {
 #nav-links.show {
   opacity: 1;
   pointer-events: auto;
-  transition: opacity 0.15s ease 0.15s;
+  transition: opacity 0.15s ease 0.1s;
 }
 #nav-links a {
   display: block;
   font-family: var(--sans);
-  font-size: 18px;
+  font-size: clamp(11px, 1.2vw, 18px);
+  margin-bottom: clamp(11px, 1.2vw, 18px);
   font-weight: 400;
   color: var(--cream);
   text-decoration: none;
   line-height: 1;
-  margin-bottom: 20px;
   white-space: nowrap;
   transition: opacity 0.15s ease;
 }
 #nav-links a:first-child {
   margin-top: 10px;
 }
+
 #nav-links a:last-child {
   margin-bottom: 0;
 }
+
 #nav-links a:hover {
   opacity: 0.65;
 }
@@ -239,7 +241,7 @@ body {
 }
 .arc-stop {
   padding: 30px 40px 30px 0;
-  min-height: 185px;
+  min-height: 170px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -315,7 +317,7 @@ body {
 }
 .arc-role {
   padding: 30px 0 30px 40px;
-  min-height: 185px;
+  min-height: 170px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -557,7 +559,7 @@ body {
 /* ═══════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════ */
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
   .hero {
     padding: 60px 32px 80px;
   }
@@ -588,4 +590,4 @@ body {
     width: 340px;
     padding: 28px 24px 28px 48px;
   }
-}
+} */

@@ -1,5 +1,5 @@
 /* ── NAV ── */
-const SIZE = 185;
+const SIZE = 170;
 const TRI = [
   [0, 0],
   [SIZE, 0],
@@ -23,15 +23,11 @@ function setPts(pts) {
   navPoly.setAttribute("points", pts.map((p) => p.join(",")).join(" "));
 }
 
-window.addEventListener(
-  "scroll",
-  () => {
-    if (!isNavVisible && window.scrollY > 30) {
-      isNavVisible = true;
-    }
-  },
-  { passive: true }
-);
+/* ── NAV INTRO ── */
+setTimeout(() => {
+  openNav();
+  setTimeout(closeNav, 2000);
+}, 500);
 
 navPoly.addEventListener("mouseenter", () => {
   if (!animating && !isOpen) openNav();
@@ -83,9 +79,13 @@ function closeNav() {
   isOpen = false;
   animating = true;
   navLinks.classList.remove("show");
-  setTimeout(() => morph(SQ, TRI, 400, easeIn, () => {
-    navWrap.style.pointerEvents = "";
-  }), 180);
+  setTimeout(
+    () =>
+      morph(SQ, TRI, 400, easeIn, () => {
+        navWrap.style.pointerEvents = "";
+      }),
+    180
+  );
 }
 
 /* ── CAREER ARC PATH ── */
