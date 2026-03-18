@@ -226,17 +226,75 @@ body {
 .arc-grid {
   display: grid;
   grid-template-columns: 500px 140px 1fr;
-  grid-template-rows: repeat(4, auto);
+  grid-template-areas:
+    "t0 path r0"
+    "b0 path r0"
+    "t1 path r1"
+    "b1 path r1"
+    "t2 path r2"
+    "b2 path r2"
+    "t3 path r3"
+    "b3 path r3";
   padding: 0 174px;
   max-width: 1300px;
   margin: 0 auto;
 }
+.arc-stop-title[data-index="0"] {
+  grid-area: t0;
+}
+.arc-stop-title[data-index="1"] {
+  grid-area: t1;
+}
+.arc-stop-title[data-index="2"] {
+  grid-area: t2;
+}
+.arc-stop-title[data-index="3"] {
+  grid-area: t3;
+}
+.arc-stop[data-index="0"] {
+  grid-area: b0;
+}
+.arc-stop[data-index="1"] {
+  grid-area: b1;
+}
+.arc-stop[data-index="2"] {
+  grid-area: b2;
+}
+.arc-stop[data-index="3"] {
+  grid-area: b3;
+}
+.arc-role[data-index="0"] {
+  grid-area: r0;
+}
+.arc-role[data-index="1"] {
+  grid-area: r1;
+}
+.arc-role[data-index="2"] {
+  grid-area: r2;
+}
+.arc-role[data-index="3"] {
+  grid-area: r3;
+}
+.arc-stop-title {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.2;
+  padding: 30px 40px 8px 0;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.arc-stop-title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.arc-stop-title.final {
+  font-weight: 600;
+  color: var(--teal);
+}
 .arc-stop {
-  padding: 30px 40px 30px 0;
-  min-height: 170px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 6px 40px 30px 0;
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.65s ease, transform 0.65s ease;
@@ -244,17 +302,6 @@ body {
 .arc-stop.visible {
   opacity: 1;
   transform: translateY(0);
-}
-.arc-stop-title {
-  font-size: 20px;
-  font-weight: 400;
-  color: var(--ink);
-  margin-bottom: 14px;
-  line-height: 1.2;
-}
-.arc-stop-title.final {
-  font-weight: 600;
-  color: var(--teal);
 }
 .arc-stop-body {
   font-size: 16px;
@@ -268,8 +315,7 @@ body {
   color: var(--rose);
 }
 .arc-path-col {
-  grid-column: 2;
-  grid-row: 1 / 5;
+  grid-area: path;
   position: relative;
   display: flex;
   justify-content: center;
@@ -309,10 +355,10 @@ body {
 }
 .arc-role {
   padding: 30px 0 30px 40px;
-  min-height: 170px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-self: center;
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.65s ease 0.15s, transform 0.65s ease 0.15s;
@@ -331,6 +377,46 @@ body {
 .arc-role-sub {
   font-size: 14px;
   color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .arc-grid {
+    display: block;
+    padding: 0 clamp(20px, 5vw, 48px);
+  }
+  .arc-path-col {
+    display: none;
+  }
+  .arc-stop-title {
+    padding: 40px 0 0;
+    font-size: clamp(18px, 2.5vw, 20px);
+  }
+  .arc-stop-title:first-child {
+    padding-top: 0;
+  }
+  .arc-role {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 0 6px;
+    padding: 8px 0 12px;
+    min-height: auto;
+  }
+  .arc-role-title {
+    margin-bottom: 0;
+    font-size: clamp(12px, 1.8vw, 16px);
+  }
+  .arc-role-sub {
+    font-size: clamp(11px, 1.4vw, 13px);
+  }
+  .arc-role-sub::before {
+    content: "· ";
+    color: var(--muted);
+  }
+  .arc-stop {
+    padding: 0;
+  }
 }
 
 /* ═══════════════════════════════════════
@@ -547,39 +633,3 @@ body {
   height: 22px;
   fill: currentColor;
 }
-
-/* ═══════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════ */
-/* @media (max-width: 900px) {
-  .hero {
-    padding: 60px 32px 80px;
-  }
-  .hero-name {
-    font-size: 32px;
-  }
-  .hero-tagline {
-    font-size: 22px;
-  }
-  .hero-intro {
-    font-size: 18px;
-  }
-  .hero-middle,
-  .hero-path,
-  .hero-cta {
-    font-size: 16px;
-  }
-  #nav-wrap,
-  #nav-svg {
-    width: 160px;
-    height: 160px;
-  }
-  .arc-grid {
-    grid-template-columns: 1fr 80px 200px;
-    padding: 0 32px;
-  }
-  .koicha-card {
-    width: 340px;
-    padding: 28px 24px 28px 48px;
-  }
-} */

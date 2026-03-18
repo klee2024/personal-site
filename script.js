@@ -129,7 +129,7 @@ const arcObserver = new IntersectionObserver(
   { threshold: 0.25 }
 );
 document
-  .querySelectorAll(".arc-stop, .arc-role")
+  .querySelectorAll(".arc-stop-title, .arc-stop, .arc-role")
   .forEach((el) => arcObserver.observe(el));
 
 /* ── SECTION HEADER ANIMATION ── */
