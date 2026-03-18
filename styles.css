@@ -138,13 +138,13 @@ body {
 .hero-cta {
   font-size: 20px;
   font-style: italic;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 }
 .hero-arrow {
   display: block;
-  width: 202px;
-  height: 107px;
-  margin-left: 180px;
+  width: 300px;
+  height: auto;
+  margin-left: 250px;
 }
 
 .fade-in {
