@@ -35,6 +35,10 @@ navPoly.addEventListener("mouseenter", () => {
 navWrap.addEventListener("mouseleave", () => {
   if (!animating && isOpen) closeNav();
 });
+navWrap.addEventListener("click", () => {
+  if (!animating && !isOpen) openNav();
+  if (!animating && isOpen) closeNav();
+});
 document
   .querySelectorAll("#nav-links a")
   .forEach((a) => a.addEventListener("click", () => closeNav()));
