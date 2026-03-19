@@ -209,25 +209,9 @@
     </header>
 
     <section class="koicha-section">
-      <div class="koicha-stage" id="koicha-stage">
-        <!-- Info card (draggable) -->
-        <div class="koicha-card" id="koicha-card">
-          <!-- Pull tab dots -->
-          <div class="pull-tab">
-            <div class="pull-tab-row">
-              <div class="pull-tab-dot"></div>
-              <div class="pull-tab-dot"></div>
-            </div>
-            <div class="pull-tab-row">
-              <div class="pull-tab-dot"></div>
-              <div class="pull-tab-dot"></div>
-            </div>
-            <div class="pull-tab-row">
-              <div class="pull-tab-dot"></div>
-              <div class="pull-tab-dot"></div>
-            </div>
-          </div>
-          <h2 class="koicha-card-name">Koicha</h2>
+      <div class="koicha-layout">
+        <div class="koicha-card">
+          <h2 class="koicha-card-name"><a class="koicha-link" href="https://koicha-frontend.onrender.com/explore" target="_blank" rel="noopener">Koicha</a></h2>
           <div class="koicha-card-body">
             <p>
               Koicha started with a personal frustration: finding good matcha is
@@ -248,36 +232,20 @@
           </div>
         </div>
 
-        <!-- Screenshots revealed on drag -->
-        <div class="koicha-screenshots" id="koicha-screenshots">
-          <div class="koicha-screenshot" style="left: 0; z-index: 3">
-            <img
+        <div class="koicha-viewer">
+          <button class="koicha-btn" id="koicha-prev" aria-label="Previous screenshot">&#8249;</button>
+          <div class="koicha-screenshots">
+            <img class="koicha-screenshot active"
               src="https://www.figma.com/api/mcp/asset/994de762-0a1e-4f63-8c09-5d2742f6f107"
-              alt="Koicha explore screen"
-            />
-          </div>
-          <div class="koicha-screenshot" style="left: 44px; z-index: 2">
-            <img
+              alt="Koicha explore screen" />
+            <img class="koicha-screenshot"
               src="https://www.figma.com/api/mcp/asset/c7f13364-ea69-485d-b8dc-1497d30fe6db"
-              alt="Koicha taste profile screen"
-            />
-          </div>
-          <div class="koicha-screenshot" style="left: 88px; z-index: 1">
-            <img
+              alt="Koicha taste profile screen" />
+            <img class="koicha-screenshot"
               src="https://www.figma.com/api/mcp/asset/35db3c08-3491-417e-b1ec-c153aa4f8d33"
-              alt="Koicha product screen"
-            />
+              alt="Koicha product screen" />
           </div>
-        </div>
-
-        <!-- Drag hint -->
-        <div class="drag-hint" id="drag-hint">← drag to explore</div>
-
-        <!-- Nav dots -->
-        <div class="koicha-nav-dots" id="koicha-dots">
-          <div class="koicha-dot active" data-idx="0"></div>
-          <div class="koicha-dot" data-idx="1"></div>
-          <div class="koicha-dot" data-idx="2"></div>
+          <button class="koicha-btn" id="koicha-next" aria-label="Next screenshot">&#8250;</button>
         </div>
       </div>
     </section>
@@ -294,7 +262,7 @@
         <div class="footer-icons">
           <!-- LinkedIn -->
           <a
-            href="https://linkedin.com/in/kayalee"
+            href="https://www.linkedin.com/in/kaya-m-lee/"
             class="footer-icon"
             aria-label="LinkedIn"
             target="_blank"
@@ -308,7 +276,7 @@
           </a>
           <!-- Email -->
           <a
-            href="mailto:kaya@kayalee.com"
+            href="mailto:kaya.m.lee7@gmail.com"
             class="footer-icon"
             aria-label="Email"
           >
@@ -320,7 +288,7 @@
           </a>
           <!-- GitHub -->
           <a
-            href="https://github.com/kayalee"
+            href="https://github.com/klee2024"
             class="footer-icon"
             aria-label="GitHub"
             target="_blank"

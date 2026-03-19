@@ -423,50 +423,48 @@ body {
    KOICHA SECTION
 ═══════════════════════════════════════ */
 .koicha-section {
-  position: relative;
-  padding: 60px 0 100px;
-  overflow: hidden;
+  padding: clamp(40px, 5vw, 80px) 0 clamp(60px, 7vw, 100px);
 }
 
-.koicha-stage {
-  position: relative;
-  height: 420px;
-  margin: 40px 0 0;
-  overflow: hidden;
-  cursor: grab;
-  user-select: none;
-}
-.koicha-stage:active {
-  cursor: grabbing;
+.koicha-layout {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 4vw, 60px);
+  margin-top: 40px;
+  padding-right: clamp(24px, 8vw, 120px);
 }
 
-/* Koicha info card */
 .koicha-card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 499px;
-  height: 371px;
+  flex-shrink: 0;
+  width: clamp(260px, 36vw, 460px);
   background: var(--teal);
-  border-radius: 4px;
-  padding: 35px 80px 35px 80px;
-  z-index: 10;
+  padding: clamp(24px, 3vw, 40px) clamp(24px, 4vw, 52px);
+  align-self: stretch;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  transition: transform 0.05s linear;
+  justify-content: center;
 }
 
 .koicha-card-name {
   font-family: var(--mono);
-  font-size: 36px;
+  font-size: clamp(24px, 2.8vw, 36px);
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: clamp(14px, 1.5vw, 20px);
   font-weight: 400;
 }
 
+.koicha-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color 0.2s ease;
+}
+.koicha-link:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
 .koicha-card-body {
-  font-size: 16px;
+  font-size: clamp(14px, 1.1vw, 16px);
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.9);
 }
@@ -478,106 +476,73 @@ body {
   margin-bottom: 0;
 }
 
-/* Pull tab */
-.pull-tab {
-  position: absolute;
-  left: 19px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  z-index: 11;
-  pointer-events: none;
-}
-
-.pull-tab-row {
-  display: flex;
-  gap: 3px;
-}
-
-.pull-tab-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.7);
-}
-
-/* Drag hint */
-.drag-hint {
-  position: absolute;
-  bottom: -28px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  white-space: nowrap;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.drag-hint.hidden {
-  opacity: 0;
-}
-
-/* Screenshots gallery */
-.koicha-screenshots {
-  position: absolute;
-  top: 0;
-  left: 499px;
-  height: 371px;
+.koicha-viewer {
+  flex: 1;
   display: flex;
   align-items: center;
-  gap: -30px;
-  padding-left: 0;
-  pointer-events: none;
+  gap: clamp(8px, 1vw, 16px);
+  min-width: 0;
+}
+
+.koicha-screenshots {
+  flex: 1;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  aspect-ratio: 615 / 364;
+  min-width: 0;
 }
 
 .koicha-screenshot {
-  width: 615px;
-  height: 364px;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  flex-shrink: 0;
   position: absolute;
-  top: 4px;
-}
-
-.koicha-screenshot img {
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  pointer-events: none;
   border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 
-/* Nav dots for screenshots */
-.koicha-nav-dots {
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-}
-
-.koicha-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--muted);
-  opacity: 0.4;
-  cursor: pointer;
-  transition: opacity 0.2s ease, background 0.2s ease;
-}
-
-.koicha-dot.active {
+.koicha-screenshot.active {
   opacity: 1;
-  background: var(--rose);
+}
+
+.koicha-btn {
+  flex-shrink: 0;
+  width: clamp(28px, 2.5vw, 36px);
+  height: clamp(28px, 2.5vw, 36px);
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 0, 0, 0.15);
+  background: white;
+  color: var(--ink);
+  font-size: clamp(16px, 1.8vw, 22px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, opacity 0.15s ease;
+  line-height: 1;
+}
+
+.koicha-btn:hover {
+  background: var(--cream);
+}
+
+.koicha-btn:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+@media (max-width: 768px) {
+  .koicha-layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .koicha-card {
+    width: 100%;
+  }
 }
 
 /* ═══════════════════════════════════════

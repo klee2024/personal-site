@@ -146,122 +146,20 @@ document.querySelectorAll(".section-header").forEach((header) => {
   obs.observe(header);
 });
 
-/* ── KOICHA DRAG REVEAL ── */
-const stage = document.getElementById("koicha-stage");
-const card = document.getElementById("koicha-card");
-const screenshots = document.getElementById("koicha-screenshots");
-const dragHint = document.getElementById("drag-hint");
-const dots = document.querySelectorAll(".koicha-dot");
+/* ── KOICHA SCREENSHOT NAV ── */
+const koichaScreenshots = document.querySelectorAll(".koicha-screenshot");
+const koichaPrev = document.getElementById("koicha-prev");
+const koichaNext = document.getElementById("koicha-next");
+let koichaIdx = 0;
 
-const CARD_WIDTH = 499;
-const MAX_DRAG = CARD_WIDTH - 80;
-const SCREENSHOT_W = 615;
-
-let isDragging = false;
-let startX = 0;
-let currentX = 0;
-let cardOffset = 0;
-let hasInteracted = false;
-let activeScreenshot = 0;
-
-function setCardOffset(offset) {
-  const clamped = Math.max(-MAX_DRAG, Math.min(0, offset));
-  cardOffset = clamped;
-  card.style.transform = `translateX(${clamped}px)`;
-
-  const ratio = Math.abs(clamped) / MAX_DRAG;
-  screenshots.style.transform = `translateX(${clamped * 0.6}px)`;
-
-  const idx = Math.min(2, Math.floor(ratio * 3));
-  if (idx !== activeScreenshot) {
-    activeScreenshot = idx;
-    updateDots(idx);
-  }
+function showScreenshot(idx) {
+  koichaScreenshots[koichaIdx].classList.remove("active");
+  koichaIdx = idx;
+  koichaScreenshots[koichaIdx].classList.add("active");
+  koichaPrev.disabled = koichaIdx === 0;
+  koichaNext.disabled = koichaIdx === koichaScreenshots.length - 1;
 }
 
-function updateDots(idx) {
-  dots.forEach((d, i) => d.classList.toggle("active", i === idx));
-}
-
-// Mouse events
-card.addEventListener("mousedown", (e) => {
-  isDragging = true;
-  startX = e.clientX - cardOffset;
-  stage.style.cursor = "grabbing";
-  if (!hasInteracted) {
-    hasInteracted = true;
-    dragHint.classList.add("hidden");
-  }
-});
-
-window.addEventListener("mousemove", (e) => {
-  if (!isDragging) return;
-  setCardOffset(e.clientX - startX);
-});
-
-window.addEventListener("mouseup", () => {
-  if (!isDragging) return;
-  isDragging = false;
-  stage.style.cursor = "grab";
-  if (cardOffset < -MAX_DRAG / 2) {
-    snapTo(-MAX_DRAG);
-  } else {
-    snapTo(0);
-  }
-});
-
-// Touch events
-card.addEventListener(
-  "touchstart",
-  (e) => {
-    isDragging = true;
-    startX = e.touches[0].clientX - cardOffset;
-    if (!hasInteracted) {
-      hasInteracted = true;
-      dragHint.classList.add("hidden");
-    }
-  },
-  { passive: true }
-);
-
-window.addEventListener(
-  "touchmove",
-  (e) => {
-    if (!isDragging) return;
-    setCardOffset(e.touches[0].clientX - startX);
-  },
-  { passive: true }
-);
-
-window.addEventListener("touchend", () => {
-  if (!isDragging) return;
-  isDragging = false;
-  if (cardOffset < -MAX_DRAG / 2) snapTo(-MAX_DRAG);
-  else snapTo(0);
-});
-
-function snapTo(target) {
-  const start = cardOffset;
-  const diff = target - start;
-  const t0 = performance.now();
-  const dur = 300;
-  function snap(now) {
-    const t = Math.min((now - t0) / dur, 1);
-    const e = 1 - Math.pow(1 - t, 3);
-    setCardOffset(start + diff * e);
-    if (t < 1) requestAnimationFrame(snap);
-  }
-  requestAnimationFrame(snap);
-}
-
-// Dot click navigation
-dots.forEach((dot) => {
-  dot.addEventListener("click", () => {
-    const idx = parseInt(dot.dataset.idx);
-    const target = -(idx / 2) * MAX_DRAG;
-    snapTo(target);
-  });
-});
-
-// Stage height
-stage.style.height = "420px";
+koichaPrev.addEventListener("click", () => showScreenshot(koichaIdx - 1));
+koichaNext.addEventListener("click", () => showScreenshot(koichaIdx + 1));
+showScreenshot(0);
