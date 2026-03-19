@@ -11,7 +11,7 @@
   --ink: #1a1814;
   --rose: #954b4d;
   --teal: #36566d;
-  --muted: #6e6e6e;
+  --muted: #787878;
   --mono: "Fragment Mono", monospace;
   --sans: "Inter", sans-serif;
 }
@@ -35,8 +35,8 @@ body {
   position: fixed;
   top: 0;
   right: 0;
-  width: clamp(120px, 13vw, 170px);
-  height: clamp(120px, 13vw, 170px);
+  width: clamp(115px, 13vw, 170px);
+  height: clamp(115px, 13vw, 170px);
   z-index: 200;
   pointer-events: none;
 }
@@ -44,8 +44,8 @@ body {
   position: absolute;
   top: -1px;
   right: -1px;
-  width: calc(clamp(120px, 13vw, 170px) + 2px);
-  height: calc(clamp(120px, 13vw, 170px) + 2px);
+  width: calc(clamp(115px, 13vw, 170px) + 2px);
+  height: calc(clamp(115px, 13vw, 170px) + 2px);
   cursor: pointer;
   pointer-events: none;
   opacity: 1;
@@ -62,8 +62,8 @@ body {
 }
 #nav-links {
   position: absolute;
-  top: clamp(10px, 1.07vw, 14px);
-  left: clamp(10px, 1.07vw, 14px);
+  top: clamp(9px, 1.08vw, 14px);
+  left: clamp(9px, 1.08vw, 14px);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.25s ease;
@@ -76,8 +76,8 @@ body {
 #nav-links a {
   display: block;
   font-family: var(--sans);
-  font-size: clamp(13px, 1.38vw, 18px);
-  margin-bottom: clamp(13px, 1.38vw, 18px);
+  font-size: clamp(12px, 1.38vw, 18px);
+  margin-bottom: clamp(12px, 1.38vw, 18px);
   font-weight: 400;
   color: var(--cream);
   text-decoration: none;
@@ -189,7 +189,7 @@ body {
   opacity: 0;
 }
 .section-header-line {
-  width: 95px;
+  width: 50px;
   height: 1px;
   background: var(--muted);
   opacity: 0.5;
@@ -423,14 +423,14 @@ body {
    KOICHA SECTION
 ═══════════════════════════════════════ */
 .koicha-section {
-  padding: clamp(40px, 5vw, 80px) 0 clamp(60px, 7vw, 100px);
+  padding: clamp(16px, 2vw, 32px) 0 clamp(60px, 7vw, 100px);
 }
 
 .koicha-layout {
   display: flex;
   align-items: center;
   gap: clamp(20px, 4vw, 60px);
-  margin-top: 40px;
+  margin-top: 16px;
   padding-right: clamp(24px, 8vw, 120px);
 }
 
@@ -449,7 +449,7 @@ body {
   font-family: var(--mono);
   font-size: clamp(24px, 2.8vw, 36px);
   color: white;
-  margin-bottom: clamp(14px, 1.5vw, 20px);
+  margin-bottom: clamp(16px, 1.5vw, 20px);
   font-weight: 400;
 }
 
@@ -487,7 +487,6 @@ body {
 .koicha-screenshots {
   flex: 1;
   position: relative;
-  border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
   aspect-ratio: 615 / 364;
@@ -500,7 +499,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 6px;
   opacity: 0;
   transition: opacity 0.35s ease;
 }
@@ -511,27 +509,22 @@ body {
 
 .koicha-btn {
   flex-shrink: 0;
-  width: clamp(28px, 2.5vw, 36px);
-  height: clamp(28px, 2.5vw, 36px);
-  border-radius: 50%;
-  border: 1.5px solid rgba(0, 0, 0, 0.15);
-  background: white;
-  color: var(--ink);
-  font-size: clamp(16px, 1.8vw, 22px);
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: clamp(20px, 2vw, 28px);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.15s ease, opacity 0.15s ease;
+  padding: 4px;
   line-height: 1;
+  transition: color 0.15s ease, opacity 0.15s ease;
 }
 
 .koicha-btn:hover {
-  background: var(--cream);
+  color: var(--ink);
 }
 
 .koicha-btn:disabled {
-  opacity: 0.25;
+  opacity: 0.2;
   cursor: default;
 }
 
@@ -539,9 +532,13 @@ body {
   .koicha-layout {
     flex-direction: column;
     align-items: stretch;
+    padding-right: 0;
   }
   .koicha-card {
     width: 100%;
+  }
+  .koicha-viewer {
+    padding: 0 clamp(16px, 5vw, 32px);
   }
 }
 
