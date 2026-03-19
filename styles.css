@@ -28,9 +28,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ═══════════════════════════════════════
-   NAV
-═══════════════════════════════════════ */
+/* NAV */
 #nav-wrap {
   position: fixed;
   top: 0;
@@ -97,9 +95,14 @@ body {
   opacity: 0.65;
 }
 
-/* ═══════════════════════════════════════
-   HERO / ABOUT
-═══════════════════════════════════════ */
+@media (max-width: 480px) {
+  #nav-wrap {
+    position: absolute;
+  }
+}
+
+/* HERO */
+
 .hero {
   position: relative;
   min-height: 100vh;
@@ -172,9 +175,7 @@ body {
   }
 }
 
-/* ═══════════════════════════════════════
-   SECTION HEADERS
-═══════════════════════════════════════ */
+/* CAREER ARC SECTION HEADERS */
 .section-header {
   display: flex;
   align-items: center;
@@ -216,9 +217,7 @@ body {
   }
 }
 
-/* ═══════════════════════════════════════
-   CAREER ARC
-═══════════════════════════════════════ */
+/* CAREER ARC */
 .arc-section {
   position: relative;
   padding: 0 10px 10px;
@@ -423,9 +422,7 @@ body {
   }
 }
 
-/* ═══════════════════════════════════════
-   KOICHA SECTION
-═══════════════════════════════════════ */
+/* KOICHA */
 .koicha-section {
   padding: 18px 0 clamp(60px, 7vw, 100px);
 }
@@ -543,9 +540,7 @@ body {
   }
 }
 
-/* ═══════════════════════════════════════
-   FOOTER / HOW TO REACH ME
-═══════════════════════════════════════ */
+/* FOOTER */
 .footer {
   background: var(--rose);
   padding: 28px 24px 12px;
