@@ -446,6 +446,9 @@ body {
   align-self: stretch;
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
   justify-content: center;
 }
 
@@ -486,6 +489,15 @@ body {
   align-items: center;
   gap: clamp(8px, 1vw, 16px);
   min-width: 0;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease 0.15s, transform 0.65s ease 0.15s;
+}
+
+.koicha-card.visible,
+.koicha-viewer.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .koicha-screenshots {

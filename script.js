@@ -129,9 +129,12 @@ const arcObserver = new IntersectionObserver(
   },
   { threshold: 0.25 }
 );
-document
-  .querySelectorAll(".arc-stop-title, .arc-stop, .arc-role")
-  .forEach((el) => arcObserver.observe(el));
+
+function startArcObserver() {
+  document
+    .querySelectorAll(".arc-stop-title, .arc-stop, .arc-role")
+    .forEach((el) => arcObserver.observe(el));
+}
 
 // SECTION HEADER ANIMATION
 document.querySelectorAll(".section-header").forEach((header) => {
@@ -140,12 +143,28 @@ document.querySelectorAll(".section-header").forEach((header) => {
       if (entry.isIntersecting) {
         header.classList.add("animated");
         obs.disconnect();
+        if (header.id === "how-i-think") startArcObserver();
       }
     },
-    { threshold: 0.5 }
+    { threshold: 0.1 }
   );
   obs.observe(header);
 });
+
+// KOICHA FADE IN
+const koichaObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("visible");
+      koichaObserver.unobserve(entry.target);
+    });
+  },
+  { threshold: 0.25 }
+);
+document
+  .querySelectorAll(".koicha-card, .koicha-viewer")
+  .forEach((el) => koichaObserver.observe(el));
 
 // KOICHA SCREENSHOT NAV
 const koichaScreenshots = document.querySelectorAll(".koicha-screenshot");
