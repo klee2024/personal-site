@@ -221,7 +221,7 @@ body {
 ═══════════════════════════════════════ */
 .arc-section {
   position: relative;
-  padding: 10px;
+  padding: 0 10px 10px;
 }
 .arc-grid {
   display: grid;
@@ -241,6 +241,7 @@ body {
 }
 .arc-stop-title[data-index="0"] {
   grid-area: t0;
+  padding-top: 18px;
 }
 .arc-stop-title[data-index="1"] {
   grid-area: t1;
@@ -426,14 +427,14 @@ body {
    KOICHA SECTION
 ═══════════════════════════════════════ */
 .koicha-section {
-  padding: clamp(16px, 2vw, 32px) 0 clamp(60px, 7vw, 100px);
+  padding: 18px 0 clamp(60px, 7vw, 100px);
 }
 
 .koicha-layout {
   display: flex;
   align-items: center;
   gap: clamp(20px, 4vw, 60px);
-  margin-top: 16px;
+  margin-top: 0;
   padding-right: clamp(24px, 8vw, 120px);
 }
 
@@ -489,19 +490,16 @@ body {
 
 .koicha-screenshots {
   flex: 1;
-  position: relative;
-  overflow: hidden;
+  display: grid;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-  aspect-ratio: 615 / 364;
   min-width: 0;
 }
 
 .koicha-screenshot {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   opacity: 0;
   transition: opacity 0.35s ease;
 }

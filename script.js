@@ -1,4 +1,4 @@
-/* ── NAV ── */
+// NAV
 const SIZE = 170;
 const TRI = [
   [0, 0],
@@ -23,7 +23,7 @@ function setPts(pts) {
   navPoly.setAttribute("points", pts.map((p) => p.join(",")).join(" "));
 }
 
-/* ── NAV INTRO ── */
+// NAV INTRO
 setTimeout(() => {
   openNav();
   setTimeout(closeNav, 2000);
@@ -35,6 +35,7 @@ navPoly.addEventListener("mouseenter", () => {
 navWrap.addEventListener("mouseleave", () => {
   if (!animating && isOpen) closeNav();
 });
+// for mobile
 navWrap.addEventListener("click", () => {
   if (!animating && !isOpen) openNav();
   if (!animating && isOpen) closeNav();
@@ -92,7 +93,7 @@ function closeNav() {
   );
 }
 
-/* ── CAREER ARC PATH ── */
+// CAREER ARC PATH
 const DASH = 2000;
 const arcSection = document.querySelector(".arc-section");
 const allPaths = document.querySelectorAll(".path-main, .path-shadow");
@@ -114,7 +115,7 @@ function updatePath() {
 window.addEventListener("scroll", updatePath, { passive: true });
 updatePath();
 
-/* ── ARC FADE-IN ── */
+// ARC FADE IN
 const nodes = [0, 1, 2, 3].map((i) => document.getElementById("node-" + i));
 const arcObserver = new IntersectionObserver(
   (entries) => {
@@ -132,7 +133,7 @@ document
   .querySelectorAll(".arc-stop-title, .arc-stop, .arc-role")
   .forEach((el) => arcObserver.observe(el));
 
-/* ── SECTION HEADER ANIMATION ── */
+// SECTION HEADER ANIMATION
 document.querySelectorAll(".section-header").forEach((header) => {
   const obs = new IntersectionObserver(
     ([entry]) => {
@@ -146,7 +147,7 @@ document.querySelectorAll(".section-header").forEach((header) => {
   obs.observe(header);
 });
 
-/* ── KOICHA SCREENSHOT NAV ── */
+// KOICHA SCREENSHOT NAV
 const koichaScreenshots = document.querySelectorAll(".koicha-screenshot");
 const koichaPrev = document.getElementById("koicha-prev");
 const koichaNext = document.getElementById("koicha-next");
