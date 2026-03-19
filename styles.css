@@ -154,7 +154,7 @@ body {
 }
 .hero-arrow {
   display: block;
-  width: clamp(180px, 21vw, 300px);
+  width: clamp(200px, 21vw, 300px);
   height: auto;
   margin-left: clamp(150px, 17vw, 250px);
   animation-delay: 0.85s;
@@ -178,11 +178,11 @@ body {
 .section-header {
   display: flex;
   align-items: center;
-  padding: 18px 24px 0;
-  gap: 16px;
+  padding: clamp(12px, 2vw, 18px) clamp(16px, 3vw, 24px) 0;
+  gap: clamp(10px, 1.5vw, 16px);
 }
 .section-header-label {
-  font-size: 16px;
+  font-size: clamp(12px, 1.5vw, 16px);
   color: var(--muted);
   font-weight: 400;
   white-space: nowrap;
@@ -380,6 +380,9 @@ body {
 }
 
 @media (max-width: 900px) {
+  .arc-section {
+    padding-top: clamp(16px, 2vw, 32px);
+  }
   .arc-grid {
     display: block;
     padding: 0 clamp(20px, 5vw, 48px);
@@ -392,7 +395,7 @@ body {
     font-size: clamp(18px, 2.5vw, 20px);
   }
   .arc-stop-title:first-child {
-    padding-top: 0;
+    padding-top: 16px;
   }
   .arc-role {
     flex-direction: row;
@@ -552,7 +555,7 @@ body {
 }
 
 .footer-hobbies {
-  font-size: 16px;
+  font-size: clamp(13px, 2vw, 16px);
   line-height: 1.65;
   color: var(--cream);
   max-width: 600px;
@@ -566,22 +569,22 @@ body {
 }
 
 .footer-credit {
-  font-size: 14px;
+  font-size: clamp(11px, 1.7vw, 14px);
   color: rgba(255, 255, 255, 0.85);
 }
 
 .footer-icons {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: clamp(10px, 1.5vw, 16px);
 }
 
 .footer-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: clamp(28px, 3vw, 36px);
+  height: clamp(28px, 3vw, 36px);
   color: var(--cream);
   text-decoration: none;
   opacity: 0.85;
@@ -591,7 +594,7 @@ body {
   opacity: 1;
 }
 .footer-icon svg {
-  width: 22px;
-  height: 22px;
+  width: clamp(18px, 1.8vw, 22px);
+  height: clamp(18px, 1.8vw, 22px);
   fill: currentColor;
 }
